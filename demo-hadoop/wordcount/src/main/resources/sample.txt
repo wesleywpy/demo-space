@@ -1,0 +1,248 @@
+Actor	Event	Generates	Generates	产生	Process		
+Actor	Event	Resolves	Resolves	解决	Process		
+Actor	Function	InteractsWith	Interacts with	交互	Core		
+Actor	Function	Performs	Performs	执行	Core		
+Actor	Location	OperatesIn	Operates in	在	Infrastructure		ApplicationActorDiagram
+Actor	Organization	BelongsTo	Belongs to	属于	Core		OrganizationActor
+Actor	Process	ParticipatesIn	Participates in	参与	Core		
+Actor	Role	PerformsTaskIn	Performs task in	扮演	Core		ActorCatalog,RoleCatalog
+Actor	Business	Consumes	Consumes	消费	Core		BusinessUsecaseDiagram
+Actor	Actor	Decomposes	Decomposes	拆减	Core		
+Actor	DataEntity	Consumes	Supplies/Consumes	供应/消费	Core		BusinessInformation
+Actor	DataEntity	Supplies	Supplies/Consumes	供应/消费	Core		BusinessInformation
+Contract	Business	GovernsAndMeasures	Governs and Measures	统治和测量	Governance		ContractCatalog
+Contract	ServiceQuality	Meets	Meets	满足	Governance		ContractCatalog
+Control	Process	EnsuresCorrectOperationOf	Ensures correct operation of	指导	Process		
+Driver	Goal	Creates	Creates	创建	Motivation		DriverGoalObjective
+Driver	Organization	Motivates	Motivates	激发	Motivation		DriverGoalObjective
+Driver	Driver	Decomposes	Decomposes	拆减	Motivation		
+Function	Business	IsBoundedBy	Is bounded by	被界定	Core		FunctionBusinessRelation,BusinessFootprintDiagram,GoalObjectiveBusiness
+Function	Function	Decomposes	Decomposes	拆减	Core		FunctionDismantling
+Function	Function	CommunicatesWith	Communicates with	交互	Core		FunctionDismantling
+Function	Process	Supports	Supports	支持	Core		
+Function	Process	IsRealizedBy	Is realized by	实现	Core		
+Goal	Goal	Decomposes	Decomposes	拆减	Motivation		DriverGoalObjective
+Location	Location	Decomposes	Decomposes	拆减	Infrastructure		
+LogicalApplication	DataEntity	OperatesOn	Operates on	处理	Core		BusinessInformation,DataDissemination
+LogicalApplication	Business	Implements	Implements	实现	Core		DataDissemination
+LogicalApplication	LogicalApplication	Decomposes	Decomposes	拆减	Core		BaselineApplicationAnalysis,TargetApplicationAnalysis,ApplicationCombinationDiagram
+LogicalApplication	LogicalApplication	CommunicatesWith	Communicates with	交互	Core		BaselineApplicationAnalysis,TargetApplicationAnalysis,ApplicationCombinationDiagram
+LogicalData	DataEntity	Encapsulates	Encapsulates	封装	Data		BusinessInformation,LogicalDataDiagram
+LogicalTechnology	PlatformService	Supplies	Supplies	供应	Core		
+LogicalTechnology	Business	ProvidesPlatformFor	Provides platform for	提供平台	Core		BusinessFootprintDiagram
+LogicalTechnology	LogicalTechnology	Decomposes	Decomposes	拆减	Core		
+LogicalTechnology	LogicalTechnology	IsDependentOn	Is dependent on	依赖	Core		
+Measure	Objective	SetsPerformanceCriteriaFor	Sets performance criteria for	设定绩效标准	Governance		DriverGoalObjective
+Measure	Business	SetsPerformanceCriteriaFor	Sets performance criteria for	设定绩效标准	Governance		
+Measure	Measure	Decomposes	Decomposes	拆减	Governance		MeasureCatalog
+Objective	Goal	Realizes	Realizes	实现	Motivation		DriverGoalObjective,GoalObjectiveBusiness
+Objective	Objective	Decomposes	Decomposes	拆减	Motivation		DriverGoalObjective
+Organization	Function	Owns	Owns	拥有	Core		FunctionCatalog
+Organization	Location	OperatesIn	Operates in	在	Core		OrganizationDismantling
+Organization	Product	Produces	Produces	产生	Core		
+Organization	Business	OwnsAndGoverns	Owns and Governs	拥有和管理	Core		
+Organization	Organization	Decomposes	Decomposes	拆减	Core		OrganizationCatalog
+PhysicalApplication	Location	IsHostedIn	Is hosted in	在	Infrastructure		ApplicationActorDiagram
+PhysicalApplication	LogicalApplication	Extends	Extends	继承	Infrastructure		BaselineApplicationAnalysis,TargetApplicationAnalysis,ApplicationCombinationDiagram
+PhysicalApplication	PhysicalData	Encapsulates	Encapsulates	封装	Data		
+PhysicalApplication	PhysicalApplication	Decomposes	Decomposes	拆减	Core		BaselineApplicationAnalysis,TargetApplicationAnalysis,ApplicationCombinationDiagram
+PhysicalApplication	PhysicalApplication	CommunicatesWith	Communicates with	交互	Core		BaselineApplicationAnalysis,TargetApplicationAnalysis,ApplicationCombinationDiagram
+PhysicalData	Location	IsHostedIn	Is hosted in	在	Infrastructure		
+PhysicalData	LogicalData	Interweave	Interweave	交织	Data		LogicalPhysicalDataMappingDiagram
+PhysicalData	PhysicalData	Decomposes	Decomposes	拆减	Core		
+PhysicalTechnology	Location	IsHostedIn	Is hosted in	在	Infrastructure		
+PhysicalTechnology	PhysicalApplication	Realizes	Realizes	实现	Core		BusinessFootprintDiagram
+PhysicalTechnology	LogicalTechnology	Extends	Extends	继承	Infrastructure		
+PhysicalTechnology	PhysicalTechnology	Decomposes	Decomposes	拆减	Core		
+PhysicalTechnology	PhysicalTechnology	IsDependentOn	Is dependent on	依赖	Core		
+Process	Event	Generates	Generates	指导	Process		
+Process	Event	Resolves	Resolves	解决	Process		
+Process	Function	Decomposes	Decomposes	拆减	Core		
+Process	Function	Orchestrates	Orchestrates	安排	Core		
+Process	Product	Produces	Produces	产生	Process		
+Process	Business	Decomposes	Decomposes	拆减	Core		
+Process	Process	Decomposes	Decomposes	拆减	Core		
+Process	Process	Precedes	Precedes/Follows	之前/之后	Core		
+Process	Process	Follows	Precedes/Follows	之前/之后	Core		
+Role	Function	Accesses	Accesses	访问	Core		
+Role	Role	Decomposes	Decomposes	拆减	Core		
+Business	DataEntity	Provides	Provides	提供	Core		BusinessInformation,DataDissemination
+Business	DataEntity	Consumes	Consumes	消费	Core		BusinessInformation,DataDissemination
+Business	Event	Resolves	Resolves	解决	Process		
+Business	Process	Supports	Supports	支持	Core		
+Business	ServiceQuality	Meets	Meets	满足	Governance		ServiceQualityCatalog
+Business	Business	Consumes	Consumes	消费	Core		BaselineBusinessAnalysis,TargetBusinessAnalysis
+Business	Business	Decomposes	Decomposes	拆减	Core		BaselineBusinessAnalysis,TargetBusinessAnalysis
+WorkPackage	Capability	Delivers	Delivers	交付	Core		
+StrategyPlan	Strategy	Contains	Contains	包含	Core	ABR	
+StrategyPlan	Goal	Contains	Contains	包含	Core	ABR	
+StrategyPlan	Perspective	Contains	Contains	包含	Core	ABR	
+Perspective	Strategy	Contains	Contains	包含	Core		StrategyPlan
+Perspective	Goal	Attain	Attain	达到	Core		StrategyPlan
+Strategy	Goal	Attain	Attain	达到	Core		StrategyPlan
+PrincipleCatalog	Principle	Contains	Contains	包含	Core	ABR	
+ProjectCatalog	Project	Contains	Contains	包含	Core	ABR	
+ProjectProgressCatalog	ProjectProgress	Contains	Contains	包含	Core	ABR	
+Project	ProjectProgress	Contains	Contains	包含	Core		ProjectCatalog
+ProjectIssueCatalog	ProjectIssue	Contains	Contains	包含	Core	ABR	
+Project	ProjectIssue	Contains	Contains	包含	Core		ProjectCatalog
+RequirementsCatalog	Requirements	Contains	Contains	包含	Core	ABR	
+Project	Requirements	Contains	Contains	包含	Core		ProjectCatalog
+StakeholderCatalog	Stakeholder	Contains	Contains	包含	Core	ABR	
+Organization	Stakeholder	Owns	Owns	拥有	Core		StakeholderCatalog
+StakeholderAnalysisCatalog	StakeholderAnalysis	Contains	Contains	包含	Core	ABR	
+Stakeholder	StakeholderAnalysis	Generates	Generates	产生	Core		StakeholderCatalog
+ConcernCatalog	Concern	Contains	Contains	包含	Core	ABR	
+Stakeholder	Concern	Generates	Generates	产生	Core		ConcernCatalog
+CommunicationPlanCatalog	CommunicationPlan	Contains	Contains	包含	Core	ABR	
+Concern	CommunicationPlan	Resolves	Resolves	解决	Core		ConcernCatalog
+Stakeholder	CommunicationPlan	Creates	Creates	创建	Core		CommunicationPlanCatalog
+CommunicationHistoryCatalog	CommunicationHistory	Contains	Contains	包含	Core	ABR	
+CommunicationPlan	CommunicationHistory	Generates	Generates	产生	Core		CommunicationPlanCatalog
+Stakeholder	CommunicationHistory	Generates	Generates	产生	Core		CommunicationPlanCatalog,CommunicationHistoryCatalog
+DictionaryCatalog	Dictionary	Contains	Contains	包含	Core	ABR	
+DictionaryContentCatalog	DictionaryContent	Contains	Contains	包含	Core	ABR	
+Dictionary	DictionaryContent	Owns	Owns	拥有	Core		DictionaryContentCatalog
+OrganizationCatalog	Organization	Contains	Contains	包含	Core	ABR	
+ActorCatalog	Actor	Contains	Contains	包含	Core	ABR	
+RoleCatalog	Role	Contains	Contains	包含	Core	ABR	
+BaselineBusinessAnalysis	Business	Contains	Contains	包含	Core	ABR	
+BaselineBusinessProcess	DataEntity	Contains	Contains	包含	Core	ABR	
+TargetBusinessAnalysis	Business	Contains	Contains	包含	Core	ABR	
+TargetBusinessProcess	DataEntity	Contains	Contains	包含	Core	ABR	
+BaselineApplicationAnalysis	LogicalApplication	Contains	Contains	包含	Core	ABR	
+BaselineApplicationAnalysis	PhysicalApplication	Contains	Contains	包含	Core	ABR	
+BusinessCatalog	Business	Contains	Contains	包含	Core	ABR	
+DataEntityCatalog	DataEntity	Contains	Contains	包含	Core	ABR	
+LogicalApplicationCatalog	LogicalApplication	Contains	Contains	包含	Core	ABR	
+PhysicalApplicationCatalog	PhysicalApplication	Contains	Contains	包含	Core	ABR	
+TargetApplicationAnalysis	LogicalApplication	Contains	Contains	包含	Core	ABR	
+TargetApplicationAnalysis	PhysicalApplication	Contains	Contains	包含	Core	ABR	
+FunctionCatalog	Function	Contains	Contains	包含	Core	ABR	
+FunctionBusinessRelation	Function	Contains	Contains	包含	Core	ABR	
+OrganizationPersonCatalog	OrganizationPerson	Contains	Contains	包含	Core	ABR	
+Organization	OrganizationPerson	Owns	Owns	包含	Core		OrganizationPersonCatalog
+OrganizationFocusCatalog	OrganizationFocus	Contains	Contains	包含	Core	ABR	
+Organization	OrganizationFocus	Owns	Owns	拥有	Core		OrganizationFocusCatalog
+MaterialCatalog	Material	Contains	Contains	包含	Core	ABR	
+AssumptionCatalog	Assumption	Contains	Contains	包含	Core	ABR	
+StandardCatalog	Standard	Contains	Contains	包含	Core	ABR	
+LocationCatalog	Location	Contains	Contains	包含	Core	ABR	
+ActorRoleMatrices	MatricesContent	OwnContent	OwnContent	拥有内容	Core	ABR	
+Actor	MatricesContent	ContentSource	ContentSource	内容来源	Core		ActorRoleMatrices
+MatricesContent	Role	ContentTarget	ContentTarget	内容目标	Core		ActorRoleMatrices
+BusinessGapMatrices	BusinessGap	OwnContent	OwnContent	拥有差异	Core	ABR	
+Business	BusinessGap	ContentSource	ContentSource	差异来源	Core		BusinessGapMatrices
+BusinessGap	Business	ContentTarget	ContentTarget	差异目标	Core		BusinessGapMatrices
+ProcessGapMatrices	Gap	OwnContent	OwnContent	拥有差异	Core	ABR	
+Process	Gap	ContentSource	ContentSource	差异来源	Core		ProcessGapMatrices
+Gap	Process	ContentTarget	ContentTarget	差异目标	Core		ProcessGapMatrices
+FunctionDismantling	Function	Contains	Contains	包含	Core	ABR	
+MeasureCatalog	Measure	Contains	Contains	包含	Core	ABR	
+DriverGoalObjective	Driver	Contains	Contains	包含	Core	ABR	
+DriverGoalObjective	Goal	Contains	Contains	包含	Core	ABR	
+DriverGoalObjective	Objective	Contains	Contains	包含	Core	ABR	
+OverallArchitectureDiagram	Organization	Contains	Contains	包含	Core	ABR	
+OverallArchitectureDiagram	Strategy	Contains	Contains	包含	Core	ABR	
+OverallArchitectureDiagram	Business	Contains	Contains	包含	Core	ABR	
+OverallArchitectureDiagram	LogicalApplication	Contains	Contains	包含	Core	ABR	
+OverallArchitectureDiagram	PhysicalApplication	Contains	Contains	包含	Core	ABR	
+OverallArchitectureDiagram	Project	Contains	Contains	包含	Core	ABR	
+Organization	Role	Owns	Owns	拥有	Core		OrganizationDismantling
+Role	Location	IsHostedIn	Is hosted in	在	Core		OrganizationDismantling
+OrganizationDismantling	Role	Contains	Contains	包含	Core	ABR	
+OrganizationDismantling	Location	Contains	Contains	包含	Core	ABR	
+OrganizationDismantling	Organization	Contains	Contains	包含	Core	ABR	
+BusinessFootprintDiagram	PhysicalApplication	Contains	Contains	包含	Core	ABR	
+BusinessFootprintDiagram	LogicalApplication	Contains	Contains	包含	Core	ABR	
+BusinessFootprintDiagram	Goal	Contains	Contains	包含	Core	ABR	
+BusinessFootprintDiagram	Function	Contains	Contains	包含	Core	ABR	
+BusinessFootprintDiagram	Business	Contains	Contains	包含	Core	ABR	
+BusinessFootprintDiagram	PhysicalTechnology	Contains	Contains	包含	Core	ABR	
+BusinessFootprintDiagram	LogicalTechnology	Contains	Contains	包含	Core	ABR	
+Goal	Function	Resolves	Resolves	解决	Core		BusinessFootprintDiagram
+ServiceQualityCatalog	ServiceQuality	Contains	Contains	包含	Core	ABR	
+ContractCatalog	Contract	Contains	Contains	包含	Core	ABR	
+ConstraintsCatalog	Constraints	Contains	Contains	包含	Core	ABR	
+ApplicationCombinationDiagram	PhysicalApplication	Contains	Contains	包含	Core	ABR	
+ApplicationCombinationDiagram	LogicalApplication	Contains	Contains	包含	Core	ABR	
+ApplicationActorDiagram	LogicalApplication	Contains	Contains	包含	Core	ABR	
+ApplicationActorDiagram	PhysicalApplication	Contains	Contains	包含	Core	ABR	
+ApplicationActorDiagram	Actor	Contains	Contains	包含	Core	ABR	
+ApplicationActorDiagram	Location	Contains	Contains	包含	Core	ABR	
+Actor	LogicalApplication	Owns	Owns	包含	Core		ApplicationActorDiagram
+Actor	PhysicalApplication	Owns	Owns	包含	Core		ApplicationActorDiagram
+GoalObjectiveBusiness	Goal	Contains	Contains	包含	Core	ABR	
+GoalObjectiveBusiness	Objective	Contains	Contains	包含	Core	ABR	
+GoalObjectiveBusiness	Function	Contains	Contains	包含	Core	ABR	
+GoalObjectiveBusiness	Role	Contains	Contains	包含	Core	ABR	
+GoalObjectiveBusiness	Business	Contains	Contains	包含	Core	ABR	
+Objective	Function	ObjectiveFunction_	ObjectiveFunction_	缺省值	Core		GoalObjectiveBusiness
+Role	Goal	RoleGoal_	RoleGoal_	缺省值	Core		GoalObjectiveBusiness
+Business	Role	BusinessRole_	RoleBusiness_	缺省值	Core		GoalObjectiveBusiness
+BusinessInformation	Actor	Contains	Contains	包含	Core	ABR	
+BusinessInformation	DataEntity	Contains	Contains	包含	Core	ABR	
+BusinessInformation	LogicalApplication	Contains	Contains	包含	Core	ABR	
+BusinessInformation	LogicalData	Contains	Contains	包含	Core	ABR	
+BusinessInformation	Business	Contains	Contains	包含	Core	ABR	
+LogicalDataDiagram	LogicalData	Contains	Contains	包含	Core	ABR	
+LogicalDataDiagram	DataEntity	Contains	Contains	包含	Core	ABR	
+ApplicationUsecaseDiagram	LogicalApplication	Contains	Contains	包含	Core	ABR	
+ApplicationUsecaseDiagram	Actor	Contains	Contains	包含	Core	ABR	
+Actor	LogicalApplication	ActorLogicalApplication_	ActorLogicalApplication_	缺省值	Core		ApplicationUsecaseDiagram
+BusinessUsecaseDiagram	Actor	Contains	Contains	包含	Core	ABR	
+BusinessUsecaseDiagram	Business	Contains	Contains	包含	Core	ABR	
+RiskCatalog	Risk	Contains	Contains	包含	Core	ABR	
+BusinessInteractionMatrices	MatricesContent	OwnContent	OwnContent	拥有差异	Core	ABR	
+Business	MatricesContent	ContentSource	ContentSource	内容来源	Core		BusinessInteractionMatrices
+MatricesContent	Business	ContentTarget	ContentTarget	内容目标	Core		BusinessInteractionMatrices
+ApplicationOrganizationMatrices	MatricesContent	OwnContent	OwnContent	拥有差异	Core	ABR	
+LogicalApplication	MatricesContent	ContentSource	ContentSource	内容来源	Core		ApplicationOrganizationMatrices
+MatricesContent	Organization	ContentTarget	ContentTarget	内容目标	Core		ApplicationOrganizationMatrices
+ApplicationFunctionMatrices	MatricesContent	OwnContent	OwnContent	拥有差异	Core	ABR	
+LogicalApplication	MatricesContent	ContentSource	ContentSource	内容来源	Core		ApplicationFunctionMatrices
+MatricesContent	Function	ContentTarget	ContentTarget	内容目标	Core		ApplicationFunctionMatrices
+ApplicationInteractionMatrices	MatricesContent	OwnContent	OwnContent	拥有差异	Core	ABR	
+LogicalApplication	MatricesContent	ContentSource	ContentSource	内容来源	Core		ApplicationInteractionMatrices
+MatricesContent	LogicalApplication	ContentTarget	ContentTarget	内容目标	Core		ApplicationInteractionMatrices
+RoleApplicationMatrices	MatricesContent	OwnContent	OwnContent	拥有差异	Core	ABR	
+Role	MatricesContent	ContentSource	ContentSource	内容来源	Core		RoleApplicationMatrices
+MatricesContent	LogicalApplication	ContentTarget	ContentTarget	内容目标	Core		RoleApplicationMatrices
+LogicalDataFunctionMatrices	MatricesContent	OwnContent	OwnContent	拥有内容	Core	ABR	
+LogicalData	MatricesContent	ContentSource	ContentSource	内容来源	Core		LogicalDataFunctionMatrices
+MatricesContent	Function	ContentTarget	ContentTarget	内容目标	Core		LogicalDataFunctionMatrices
+LogicalData	Function	LogicalDataFunction_	LogicalDataFunction_	缺省值	Core		LogicalDataFunctionMatrices
+Role	LogicalApplication	RoleLogicalApplication_	RoleLogicalApplication_	缺省值	Core		RoleApplicationMatrices
+LogicalApplication	Function	LogicalApplicationFunction_	LogicalApplicationFunction_	缺省值	Core		ApplicationFunctionMatrices
+LogicalApplication	Organization	LogicalApplicationOrganization_	LogicalApplicationOrganization_	缺省值	Core		ApplicationOrganizationMatrices
+Requirements	BusinessGap	Contains	Contains	包含	Core		RequirementsCatalog
+DataDissemination	DataEntity	Contains	Contains	包含	Core	ABR	
+DataDissemination	Business	Contains	Contains	包含	Core	ABR	
+DataDissemination	LogicalApplication	Contains	Contains	包含	Core	ABR	
+ConceptualDataDiagram	ConceptualData	Contains	Contains	包含	Core	ABR	
+ConceptualDataCatalog	ConceptualData	Contains	Contains	包含	Core	ABR	
+SubjectAreaDiagram	ConceptualData	Contains	Contains	包含	Core	ABR	
+SubjectAreaDiagram	SubjectArea	Contains	Contains	包含	Core	ABR	
+LogicalDataDiagram	DataElement	Contains	Contains	包含	Core	ABR	
+DataElementCatalog	DataElement	Contains	Contains	包含	Core	ABR	
+ConceptualLogicalDataMappingDiagram	LogicalData	Contains	Contains	包含	Core	ABR	
+ConceptualLogicalDataMappingDiagram	ConceptualData	Contains	Contains	包含	Core	ABR	
+LogicalPhysicalDataMappingDiagram	LogicalData	Contains	Contains	包含	Core	ABR	
+LogicalPhysicalDataMappingDiagram	PhysicalData	Contains	Contains	包含	Core	ABR	
+DataOrganizationRelationDiagram	SubjectArea	Contains	Contains	包含	Core	ABR	
+DataOrganizationRelationDiagram	ConceptualData	Contains	Contains	包含	Core	ABR	
+DataOrganizationRelationDiagram	LogicalData	Contains	Contains	包含	Core	ABR	
+DataOrganizationRelationDiagram	Organization	Contains	Contains	包含	Core	ABR	
+PhysicalDataCatalog	PhysicalData	Contains	Contains	包含	Core	ABR	
+PhysicalDataDiagram	PhysicalData	Contains	Contains	包含	Core	ABR	
+ConceptualData	ConceptualData	Interweave	Interweave	交织	Core		ConceptualDataDiagram,ConceptualDataCatalog
+SubjectArea	ConceptualData	Include	Include	包括	Core		SubjectAreaDiagram
+LogicalData	LogicalData	Interweave	Interweave	交织	Core		LogicalDataDiagram
+DataElement	LogicalData	BelongsTo	BelongsTo	属于	Core		LogicalDataDiagram,DataElementCatalog
+ConceptualData	LogicalData	Interweave	Interweave	交织	Core		ConceptualLogicalDataMappingDiagram
+SubjectArea	Organization	BelongsTo	BelongsTo	属于	Core		
+ConceptualData	Organization	BelongsTo	BelongsTo	属于	Core		
+LogicalData	Organization	BelongsTo	BelongsTo	属于	Core		
+PhysicalData	PhysicalData	Interweave	Interweave	交织	Core		PhysicalDataDiagram
+PhysicalData	LogicalData	Interweave	Interweave	交织	Core		LogicalPhysicalDataMappingDiagram
+DataElement	LogicalData	BelongsTo	BelongsTo	属于	Core		LogicalDataDiagram
