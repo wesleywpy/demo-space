@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/xonomy.js"></script>
+    <script type="text/javascript" src="./js/xacml-spec.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/xonomy.css"/>
+    <script type="text/javascript">
+
+        function start() {
+            var xml="<Policy PolicyId=\"\" RuleCombiningAlgId=\"\" Version=\"1.0\"><Description/><Target/></Policy>";
+            var editor = document.getElementById("editor");
+            Xonomy.render(xml, editor, xacmlSpec);
+        }
+
+        function submit() {
+            var xml = Xonomy.harvest();
+            console.log(xml);
+        }
+    </script>
+</head>
+<body onload="start()">
+    <div id="editor"></div>
+        <button onclick="submit()">Submit!</button>
+    </body>
+</html>
