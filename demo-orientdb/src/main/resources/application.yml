@@ -1,0 +1,12 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Chongqing
+
+#orintdb config
+orient:
+  database:
+    url: remote:192.168.2.151/test
+    user: root
+    password: n3stv1s1on
