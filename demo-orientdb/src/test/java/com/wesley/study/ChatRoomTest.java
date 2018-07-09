@@ -30,7 +30,6 @@ public class ChatRoomTest {
     @Autowired
     OrientGraphFactory orientGraphFactory;
 
-
     public void initClasses(){
     }
 

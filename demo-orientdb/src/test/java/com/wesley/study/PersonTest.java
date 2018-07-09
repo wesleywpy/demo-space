@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
+ * 增删改查测试
  * @author Created by Wesley on 2017/4/1.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
