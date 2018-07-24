@@ -1,6 +1,7 @@
 package com.wesley.study.spring.amqp.annotation.concumer;
 
 import com.wesley.study.config.RabbitConstant;
+import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
@@ -29,7 +30,9 @@ public class ConsumerApplication {
         rabbitAdmin.declareExchange(directExchange);
 
         // 将队列Binding到交换机上, Routing key为add
-        BindingBuilder.bind(new Queue(RabbitConstant.QUEUE_ORDER_ADD)).to(directExchange).with("add");
+        Binding binding = BindingBuilder.bind(new Queue(RabbitConstant.QUEUE_ORDER_ADD)).to(new DirectExchange(RabbitConstant.EXCHANGE_DIRECT_ORDER)).with("add");
+        rabbitAdmin.declareBinding(binding);
+
         messageListenerContainer.start();
     }
 

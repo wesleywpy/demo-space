@@ -9,7 +9,7 @@ public abstract class RabbitConstant {
 
     }
 
-    public static final String HOST = "192.168.2.38";
+    public static final String HOST = "192.168.101.190";
 
     public static final int PORT = 5672;
 
