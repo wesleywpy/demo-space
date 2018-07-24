@@ -4,14 +4,13 @@ import com.wesley.study.config.RabbitConstant;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Exchange;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageListener;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.listener.MessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.amqp.support.ConsumerTagStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -105,17 +104,31 @@ public class SpringAMQPConsumerConfig {
         // messageListenerContainer.setAfterReceivePostProcessors();
 
         // 消息监听器
-        messageListenerContainer.setMessageListener(new MessageListener() {
-            @Override
-            public void onMessage(Message message) {
-                try {
-                    System.out.println(new String(message.getBody(), "UTF-8"));
-                    System.out.println(message.getMessageProperties());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        messageListenerContainer.setMessageListener(new MessageListener() {
+//            @Override
+//            public void onMessage(Message message) {
+//                try {
+//                    System.out.println(new String(message.getBody(), "UTF-8"));
+//                    System.out.println(message.getMessageProperties());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+
+        /**
+         *  Spring AMQP提供了消息处理器适配器的功能，它可以把一个纯POJO类适配成一个可以处理消息的处理器，
+         *  默认处理消息的方法为handleMessage，可以通过setDefaultListenerMethod方法进行修改
+         */
+        MessageListenerAdapter messageListenerAdapter = new MessageListenerAdapter(new MessageHandler());
+        // 设置默认处理消息方法
+        messageListenerAdapter.setDefaultListenerMethod("handleMessage");
+        Map<String, String> queueOrTagToMethodName = new HashMap<>();
+        // 将roberto.order.add队列的消息 使用add方法进行处理
+        queueOrTagToMethodName.put(RabbitConstant.QUEUE_ORDER_ADD, "add");
+        messageListenerAdapter.setQueueOrTagToMethodName(queueOrTagToMethodName);
+
+        messageListenerContainer.setMessageListener(messageListenerAdapter);
         return messageListenerContainer;
     }
 
