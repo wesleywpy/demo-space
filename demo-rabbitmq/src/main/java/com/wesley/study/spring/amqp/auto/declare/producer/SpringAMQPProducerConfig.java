@@ -1,4 +1,4 @@
-package com.wesley.study.spring.amqp.annotation.producer;
+package com.wesley.study.spring.amqp.auto.declare.producer;
 
 import com.wesley.study.config.RabbitConstant;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;

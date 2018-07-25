@@ -1,14 +1,12 @@
-package com.wesley.study.spring.amqp.annotation.concumer;
+package com.wesley.study.spring.amqp.manual.declare.concumer;
 
 import com.wesley.study.config.RabbitConstant;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.listener.MessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.RabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.support.ConsumerTagStrategy;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 消费者配置类
+ * 消费者配置类, 手动声明 Exchange,Queue,Binding
  * @author Created by Wesley on 2018/7/23.
  */
 @Configuration
@@ -51,27 +49,50 @@ public class SpringAMQPConsumerConfig {
         return new RabbitAdmin(connectionFactory);
     }
 
+
     /**
-     * 创建消费者配置类 将RabbitListenerContainerFactory交由Spring托管
+     * MessageListenerContainer类中定义了消息消费的逻辑
      */
     @Bean
-    public RabbitListenerContainerFactory<?> rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
-        SimpleRabbitListenerContainerFactory simpleRabbitListenerContainerFactory = new SimpleRabbitListenerContainerFactory();
-        simpleRabbitListenerContainerFactory.setConnectionFactory(connectionFactory);
+    public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory){
+        SimpleMessageListenerContainer messageListenerContainer = new SimpleMessageListenerContainer(connectionFactory);
+        messageListenerContainer.setQueueNames(RabbitConstant.QUEUE_ORDER_ADD);
 
         // 设置消费者线程数
-        simpleRabbitListenerContainerFactory.setConcurrentConsumers(5);
+        messageListenerContainer.setConcurrentConsumers(5);
         // 设置最大消费者线程数
-        simpleRabbitListenerContainerFactory.setMaxConcurrentConsumers(10);
+        messageListenerContainer.setMaxConcurrentConsumers(10);
+
+        // 设置消费者属性信息
+        Map<String, Object> argumentMap = new HashMap<>();
+        messageListenerContainer.setConsumerArguments(argumentMap);
 
         // 设置消费者标签
-        simpleRabbitListenerContainerFactory.setConsumerTagStrategy(new ConsumerTagStrategy() {
+        messageListenerContainer.setConsumerTagStrategy(new ConsumerTagStrategy() {
             @Override
             public String createConsumerTag(String s) {
                 return "RGP订单系统ADD处理逻辑消费者";
             }
         });
 
-        return simpleRabbitListenerContainerFactory;
+        // 使用setAutoStartup方法可以手动设置消息消费时机
+        messageListenerContainer.setAutoStartup(false);
+
+        // 使用setAfterReceivePostProcessors方法可以增加消息后置处理器
+        // messageListenerContainer.setAfterReceivePostProcessors();
+
+        // 消息监听器
+        messageListenerContainer.setMessageListener(new MessageListener() {
+            @Override
+            public void onMessage(Message message) {
+                try {
+                    System.out.println(new String(message.getBody(), "UTF-8"));
+                    System.out.println(message.getMessageProperties());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        return messageListenerContainer;
     }
 }

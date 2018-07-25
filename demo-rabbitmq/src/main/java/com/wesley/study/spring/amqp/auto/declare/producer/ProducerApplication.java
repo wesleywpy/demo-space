@@ -1,4 +1,4 @@
-package com.wesley.study.spring.amqp.annotation.producer;
+package com.wesley.study.spring.amqp.auto.declare.producer;
 
 import com.wesley.study.config.RabbitConstant;
 import org.springframework.amqp.core.DirectExchange;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
  * 生产者
  * @author Created by Wesley on 2018/7/24.
  */
-@ComponentScan(basePackages = "com.wesley.study.spring.amqp.annotation.producer")
+@ComponentScan(basePackages = "com.wesley.study.spring.amqp.auto.declare.producer")
 public class ProducerApplication {
 
     public static void main(String[] args) {
