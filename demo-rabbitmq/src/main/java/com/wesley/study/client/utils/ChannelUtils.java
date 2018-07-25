@@ -2,6 +2,7 @@ package com.wesley.study.client.utils;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.ConnectionFactory;
+import com.wesley.study.config.RabbitConstant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,11 +23,11 @@ public class ChannelUtils {
         ConnectionFactory connectionFactory = new ConnectionFactory();
 
         // 配置连接信息
-        connectionFactory.setHost("192.168.2.38");
-        connectionFactory.setPort(5672);
-        connectionFactory.setVirtualHost("/");
-        connectionFactory.setUsername("wesley");
-        connectionFactory.setPassword("123456");
+        connectionFactory.setHost(RabbitConstant.HOST);
+        connectionFactory.setPort(RabbitConstant.PORT);
+        connectionFactory.setVirtualHost(RabbitConstant.VIRTUAL_HOST);
+        connectionFactory.setUsername(RabbitConstant.USERNAME);
+        connectionFactory.setPassword(RabbitConstant.PASSWORD);
 
         // 网络异常自动连接恢复
         connectionFactory.setAutomaticRecoveryEnabled(true);
