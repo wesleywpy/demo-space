@@ -19,7 +19,10 @@ public class RPCClient {
     public static void main(String[] args) throws IOException {
         Channel channel = ChannelUtils.getChannelInstance("RGP订单系统Client端");
 
-//        channel.exchangeDeclare(RabbitConstant.EXCHANGE_DIRECT_ORDER, BuiltinExchangeType.DIRECT, true, false, new HashMap<>());
+        channel.queueDeclare(RabbitConstant.QUEUE_ORDER_ADD, true, false, false, new HashMap<>());
+        channel.exchangeDeclare(RabbitConstant.EXCHANGE_DIRECT_ORDER, BuiltinExchangeType.DIRECT, true, false, false, new HashMap<>());
+        channel.queueBind(RabbitConstant.QUEUE_ORDER_ADD, RabbitConstant.EXCHANGE_DIRECT_ORDER, "add", new HashMap<>());
+
         String replyTo = "welsey.order.add.replay";
         channel.queueDeclare(replyTo, true, false, false, new HashMap<>());
         String correlationId = UUID.randomUUID().toString();
@@ -28,7 +31,7 @@ public class RPCClient {
                 .contentType("UTF-8")
                 .correlationId(correlationId)
                 .replyTo(replyTo).build();
-        channel.basicPublish("welsey.order", "add", false, basicProperties, "订单消息信息".getBytes());
+        channel.basicPublish("welsey.order", "add", true, basicProperties, "订单消息信息".getBytes());
 
         channel.basicConsume("welsey.order.add.replay", true, "RGP订单系统Client端", new DefaultConsumer(channel) {
             @Override

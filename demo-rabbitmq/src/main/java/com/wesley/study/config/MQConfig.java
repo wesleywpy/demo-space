@@ -13,8 +13,8 @@ import java.util.Map;
 
 @Configuration
 public class MQConfig {
-	
-	public static final String QUEUE_DIRECT = "queue";
+
+    public static final String QUEUE_DIRECT = "wesley.order";
 	public static final String TOPIC_QUEUE1 = "topic.queue1";
 	public static final String TOPIC_QUEUE2 = "topic.queue2";
 	public static final String HEADER_QUEUE = "header.queue";

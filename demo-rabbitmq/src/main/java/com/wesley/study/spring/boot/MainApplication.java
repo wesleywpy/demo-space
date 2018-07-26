@@ -1,4 +1,4 @@
-package com.wesley.study;
+package com.wesley.study.spring.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

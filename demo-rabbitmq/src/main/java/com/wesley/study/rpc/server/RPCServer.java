@@ -19,7 +19,7 @@ public class RPCServer {
 
         channel.queueDeclare(RabbitConstant.QUEUE_ORDER_ADD, true, false, false, new HashMap<>());
         channel.exchangeDeclare(RabbitConstant.EXCHANGE_DIRECT_ORDER, BuiltinExchangeType.DIRECT, true, false, false, new HashMap<>());
-        channel.queueBind(RabbitConstant.QUEUE_ORDER_ADD, RabbitConstant.EXCHANGE_DIRECT_ORDER, "add", new HashMap<>());
+//        channel.queueBind(RabbitConstant.QUEUE_ORDER_ADD, RabbitConstant.EXCHANGE_DIRECT_ORDER, "add", new HashMap<>());
 
         // 服务端监听一个队列，监听客户端发送过来的消息
         channel.basicConsume(RabbitConstant.QUEUE_ORDER_ADD, true, "RGP订单系统Server端", new DefaultConsumer(channel) {

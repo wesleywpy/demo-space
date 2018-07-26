@@ -1,0 +1,15 @@
+server:
+ port: 8083
+
+logging:
+  level:
+    root: info
+
+#rabbitmq
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: wesley
+    password: 123456
+    virtual-host: /

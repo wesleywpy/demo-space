@@ -1,4 +1,4 @@
-package com.wesley.study;
+package com.wesley.study.spring.boot;
 
 import com.wesley.study.config.MQConfig;
 import org.slf4j.Logger;
