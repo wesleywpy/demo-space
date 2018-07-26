@@ -1,0 +1,7 @@
+
+
+在消费者消费消息时我们无法得到反馈信息，我们无法得知消息是否已经被消费成功。
+为了实现该功能RabbitMQ提供了Consumer Acknowledgements机制，使用Consumer Acknowledgements能在消费者消费消息后给Broker进行反馈，Broker根据反馈对消息进行处理
+
+### Message acknowledgment
+在实际应用中，可能会发生消费者收到Queue中的消息，但没有处理完成就宕机（或出现其他意外）的情况，这种情况下就可能会导致消息丢失。为了避免这种情况发生，我们可以要求消费者在消费完消息后发送一个回执给RabbitMQ，RabbitMQ收到消息回执（Message acknowledgment）后才将该消息从Queue中移除；如果RabbitMQ没有收到回执并检测到消费者的RabbitMQ连接断开，则RabbitMQ会将该消息发送给其他消费者（如果存在多个消费者）进行处理。这里不存在timeout概念，一个消费者处理消息时间再长也不会导致该消息被发送给其他消费者，除非它的RabbitMQ连接断开。

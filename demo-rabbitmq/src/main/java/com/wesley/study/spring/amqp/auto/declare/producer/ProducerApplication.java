@@ -34,5 +34,13 @@ public class ProducerApplication {
         // 发布消息 (交换机名, Routing key, 消息);
         // 发布消息还可以使用rabbitTemplate.convertAndSend(); 其支持消息后置处理
         rabbitTemplate.send(RabbitConstant.EXCHANGE_DIRECT_ORDER, RabbitConstant.ROUTING_KEY_ADD, message);
+
+        // 声明消息 (消息体, 消息属性)
+        MessageProperties messageProperties2 = new MessageProperties();
+        messageProperties2.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+        messageProperties2.setContentType("UTF-8");
+        Message message2 = new Message("订单信息2".getBytes(), messageProperties2);
+
+        rabbitTemplate.send(RabbitConstant.EXCHANGE_DIRECT_ORDER, RabbitConstant.ROUTING_KEY_ADD, message2);
     }
 }

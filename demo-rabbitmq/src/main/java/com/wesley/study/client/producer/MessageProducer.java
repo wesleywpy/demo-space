@@ -22,5 +22,6 @@ public class MessageProducer {
         AMQP.BasicProperties basicProperties = new AMQP.BasicProperties().builder().deliveryMode(2).contentType("UTF-8").build();
         // 设置消息属性 发布消息 (交换机名, Routing key, 可靠消息相关属性 后续会介绍, 消息属性, 消息体);
         channel.basicPublish("wesley.order", "add", false, basicProperties, "订单信息".getBytes());
+        channel.basicPublish("wesley.order", "add", false, basicProperties, "订单信息2".getBytes());
     }
 }
