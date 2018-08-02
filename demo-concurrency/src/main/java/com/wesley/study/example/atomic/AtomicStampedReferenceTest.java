@@ -1,4 +1,4 @@
-package com.wesley.study.utils;
+package com.wesley.study.example.atomic;
 
 import java.util.concurrent.atomic.AtomicStampedReference;
 
