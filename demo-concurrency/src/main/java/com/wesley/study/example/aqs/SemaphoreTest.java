@@ -1,4 +1,4 @@
-package com.wesley.study.utils;
+package com.wesley.study.example.aqs;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,7 +28,7 @@ public class SemaphoreTest {
             int y = i;
             threadPool.execute(() -> {
                 try {
-                    //获取一个许可证
+                    //获取一个许可证, 可以一次获取多个许可
                     s.acquire();
                     System.out.println("save data:"+ y);
                     //释放
