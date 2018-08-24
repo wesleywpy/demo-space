@@ -8,6 +8,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
 
 /**
+ *
  * @author Created by Wesley on 2018/8/13.
  */
 @ChannelHandler.Sharable // 标识一个ChannelHandler可以被多个Channel安全共享
@@ -18,7 +19,6 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf>{
         // 当Channel是活跃的时候, 发送一条消息
         ctx.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
     }
-
 
     /**
      * 每当接收数据时，都会调用这个方法.
