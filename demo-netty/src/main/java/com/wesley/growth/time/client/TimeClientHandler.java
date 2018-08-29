@@ -1,9 +1,7 @@
 package com.wesley.growth.time.client;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import java.util.Date;
 
 /**
  * <p>
@@ -11,22 +9,14 @@ import java.util.Date;
  * </p>
  *
  * @author yani
- * Email yani@uoko.com
  * Created by 2018/8/24 0024
- */
-public class TimeClientHandler extends ChannelInboundHandlerAdapter {
+ */public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf m = (ByteBuf) msg;
-        try {
-            // 读取时间
-            long currentTimeMillis = (m.readUnsignedInt() - 2208988800L) * 1000L;
-            System.out.println(new Date(currentTimeMillis));
-            ctx.close();
-        } finally {
-            m.release();
-        }
+        UnixTime time = (UnixTime) msg;
+        System.out.println(time);
+        ctx.close();
     }
 
     @Override
