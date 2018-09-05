@@ -1,0 +1,3 @@
+---
+#安装包存放的路径
+install_package_path: "/root/install-package"

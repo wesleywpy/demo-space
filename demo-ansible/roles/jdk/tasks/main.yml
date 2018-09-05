@@ -1,0 +1,41 @@
+---
+- name: create jdk_unarchive_path
+  file:
+    path: "{{jdk_unarchive_path}}"
+    state: directory
+    mode: 0755
+  tags:
+  - jdk
+
+- name: unarchive jdk install package
+  unarchive:
+    src: "{{jdk_pkg_path}}"
+    dest: "{{jdk_unarchive_path}}"
+    remote_src: yes
+  tags:
+    - jdk
+
+- name: configure JAVA_HOME
+  lineinfile:
+    path: /etc/profile
+    line: '{{item}}'
+  with_items:
+    - "export JAVA_HOME={{java_home}}"
+    - "export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$CLASSPATH"
+    - "export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH"
+  tags:
+    - jdk
+
+- name: source etc profile
+  command: 'source /etc/profile'
+  tags:
+    - jdk
+
+- name: register java in system
+  become_user: root
+  command: '{{item}}'
+  with_items:
+    - "update-alternatives --install \"/usr/bin/java\" \"java\" \"{{java_home}}/bin/java\" 2000"
+    - "update-alternatives --install \"/usr/bin/javac\" \"javac\" \"{{java_home}}/bin/javac\" 2000"
+  tags:
+    - jdk

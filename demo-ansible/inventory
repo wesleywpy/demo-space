@@ -1,0 +1,8 @@
+node1 ansible_ssh_host=172.18.169.170 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=adminpwd.0
+node2 ansible_ssh_host=172.18.169.169 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=adminpwd.0
+node3 ansible_ssh_host=172.18.169.168 ansible_ssh_port=22 ansible_ssh_user=root ansible_ssh_pass=adminpwd.0
+
+[all]
+node1
+node2
+node3

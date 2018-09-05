@@ -1,0 +1,8 @@
+---
+#JDK安装包路径
+jdk_pkg_path: "{{install_package_path}}/jdk-8u181-linux-x64.tar.gz"
+#安装包解压缩目录
+jdk_unarchive_path: "/home/app"
+#解压后文件夹名称
+jdk_unarchive_name: "jdk1.8.0_181"
+java_home: "{{jdk_unarchive_path}}/{{jdk_unarchive_name}}"
