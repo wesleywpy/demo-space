@@ -1,7 +1,7 @@
 package com.wesley.growth;
 
 import org.apache.storm.Config;
-import org.apache.storm.StormSubmitter;
+import org.apache.storm.LocalCluster;
 import org.apache.storm.kafka.spout.KafkaSpout;
 import org.apache.storm.kafka.spout.KafkaSpoutConfig;
 import org.apache.storm.topology.BasicOutputCollector;
@@ -43,7 +43,6 @@ public class KafkaConsumerTopology {
         }
 
         KafkaSpoutConfig<String, String> kafkaSpoutConfig = KafkaSpoutConfig.builder(args[0], args[1])
-//                                                                            .set
                                                                             .build();
         final TopologyBuilder tp = new TopologyBuilder();
 
@@ -54,13 +53,13 @@ public class KafkaConsumerTopology {
 
         String topoName = KafkaConsumerTopology.class.getSimpleName();
         Config config = new Config();
-        try {
-            StormSubmitter.submitTopology(topoName, config, tp.createTopology());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            StormSubmitter.submitTopology(topoName, config, tp.createTopology());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
-//        LocalCluster cluster = new LocalCluster();
-//        cluster.submitTopology(topoName, config, tp.createTopology());
+        LocalCluster cluster = new LocalCluster();
+        cluster.submitTopology(topoName, config, tp.createTopology());
     }
 }
