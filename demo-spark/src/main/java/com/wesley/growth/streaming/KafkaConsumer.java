@@ -19,32 +19,33 @@ import java.util.Map;
 
 /**
  * <p>
- * 集成kafka
+ *
  * </p>
  *
  * @author yani
  * Email yani@uoko.com
  * Created by 2018/09/19
  */
-public class KafkaDirectWordCount {
+public class KafkaConsumer {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{
         if (args.length != 2) {
-            System.err.println("Usage: KafkaDirectWordCount <brokers> <topics>");
+            System.err.println("Usage: KafkaConsumer <brokers> <topics>");
             System.exit(1);
         }
 
         SparkConf sparkConf = new SparkConf()
-                .setAppName("KafkaDirectWordCount")
+                .setAppName("KafkaConsumer")
                 // 本地调试模式
-                .setMaster("local[2]");
+//                .setMaster("local[2]")
+        ;
 
         JavaStreamingContext ssc = new JavaStreamingContext(sparkConf, Durations.seconds(5));
         Map<String, Object> kafkaParams = new HashMap<>();
         kafkaParams.put("bootstrap.servers", args[0]);
         kafkaParams.put("key.deserializer", StringDeserializer.class);
         kafkaParams.put("value.deserializer", StringDeserializer.class);
-        kafkaParams.put("group.id", "use_a_separate_group_id_for_each_stream");
+        kafkaParams.put("group.id", "test_group");
         kafkaParams.put("auto.offset.reset", "latest");
         kafkaParams.put("enable.auto.commit", false);
 
@@ -52,11 +53,7 @@ public class KafkaDirectWordCount {
         JavaInputDStream<ConsumerRecord<String, String>> stream = KafkaUtils.createDirectStream(
                 ssc, LocationStrategies.PreferConsistent(), ConsumerStrategies.<String, String>Subscribe(topics, kafkaParams));
 
-        stream.mapToPair(record -> new Tuple2<>(record.key(), record.value()))
-                .flatMapValues(tuple -> Arrays.asList(StringUtils.split(tuple, " ")))
-                .mapToPair(s -> new Tuple2<>(s, 1))
-                .reduceByKey((i1, i2) -> i1 + i2)
-                .print();
+        stream.mapToPair(record -> new Tuple2<>(record.key(), record.value())).print();
 
         ssc.start();
         ssc.awaitTermination();
