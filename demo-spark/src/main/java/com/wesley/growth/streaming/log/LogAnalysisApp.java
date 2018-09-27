@@ -74,8 +74,7 @@ public class LogAnalysisApp {
         logsStream.mapToPair(clickLog -> new Tuple2<>(StringUtils.substring(clickLog.getTime(), 0, 8) + "_" + clickLog.getArea(), 1))
                   .reduceByKey((i1, i2) -> i1 + i2)
                   .foreachRDD(rdd -> {
-
-                      List<ClickCount> clickCounts = rdd.map(tuple2 -> new ClickCount(tuple2._1, tuple2._2)).collect();
+                     List<ClickCount> clickCounts = rdd.map(tuple2 -> new ClickCount(tuple2._1, tuple2._2)).collect();
                       System.out.println(clickCounts);
                       ClickCountDao.save(clickCounts);
                   });

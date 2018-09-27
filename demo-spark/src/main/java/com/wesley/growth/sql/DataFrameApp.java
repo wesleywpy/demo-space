@@ -8,7 +8,7 @@ import java.io.IOException;
 
 /**
  * <p>
- *
+ * DataFrame API基本操作
  * </p>
  *
  * @author yani
@@ -24,7 +24,6 @@ public class DataFrameApp {
                 .getOrCreate();
 
         String jsonFile = DataFrameApp.class.getClassLoader().getResource("people.json").toString();
-
         Dataset<Row> dataset = sparkSession.read().json(jsonFile);
 
         // 输出dataframe对应的schema信息
