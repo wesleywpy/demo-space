@@ -53,4 +53,12 @@ object PatternMatching extends App {
     matchingType(Nil)
     matchingType("haha")
 
+
+    // 偏函数
+    def translate:PartialFunction[Int,String] = {
+        case 60 => "合格"
+        case 100 => "满分"
+    }
+
+
 }
