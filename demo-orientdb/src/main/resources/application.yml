@@ -7,6 +7,6 @@ spring:
 #orintdb config
 orient:
   database:
-    url: remote:192.168.2.151/test
+    url: remote:127.0.0.1/wesley
     user: root
-    password: n3stv1s1on
+    password: root123

@@ -1,12 +1,9 @@
 package com.wesley.study.conf;
 
 import com.wesley.study.transaction.OrientDBGraphFactory;
-import com.wesley.study.transaction.OrientDBTransactionManager;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.PlatformTransactionManager;
 
 /**
  * @author Created by Wesley on 2017/4/3.
@@ -38,8 +35,4 @@ public class OrientDBConfig {
         return new OrientDBGraphFactory(this.url, this.user, this.password);
     }
 
-    @Bean
-    public PlatformTransactionManager getTransactionManager() {
-        return new OrientDBTransactionManager();
-    }
 }
