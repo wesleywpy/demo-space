@@ -7,6 +7,7 @@
     <groupId>com.wesley.growth</groupId>
 
     <artifactId>demo-mybatis</artifactId>
+    <packaging>pom</packaging>
 
     <version>1.0-SNAPSHOT</version>
 

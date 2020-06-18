@@ -6,7 +6,11 @@
 
     <groupId>com.wesley.growth</groupId>
     <artifactId>demo-spark</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>demo-spark-ml</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
@@ -24,6 +28,13 @@
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-streaming_2.11</artifactId>
+            <version>${spark.version}</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_2.11</artifactId>
             <version>${spark.version}</version>
             <!--<scope>provided</scope>-->
         </dependency>
