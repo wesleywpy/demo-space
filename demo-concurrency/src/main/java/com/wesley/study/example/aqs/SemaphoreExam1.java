@@ -1,6 +1,5 @@
 package com.wesley.study.example.aqs;
 
-import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
@@ -9,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Wesley Created By 2018/8/6
  */
-@Slf4j
 public class SemaphoreExam1 {
 
     /**
@@ -33,7 +31,7 @@ public class SemaphoreExam1 {
                         semaphore.release(3);
                     }
                 } catch (InterruptedException e) {
-                    log.error("exception: ", e);
+                    System.out.println("exception: " +  e.getMessage());
                 }
 
             });
@@ -43,7 +41,7 @@ public class SemaphoreExam1 {
     }
 
     private static void test(int num) throws InterruptedException {
-        log.info("num: {}", num);
+        System.out.println("num: " +  num);
         TimeUnit.MILLISECONDS.sleep(400);
     }
 }

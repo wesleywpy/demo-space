@@ -1,7 +1,7 @@
 package com.wesley.study.example.atomic;
 
-import com.wesley.study.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Wesley Created By 2018/8/1
  */
 @Slf4j
-@ThreadSafe
 public class AtomicExample1 {
 
     // 请求总数
@@ -37,14 +36,14 @@ public class AtomicExample1 {
                     add();
                     semaphore.release();
                 } catch (Exception e) {
-                    log.error("exception", e);
+                    e.printStackTrace();
                 }
                 countDownLatch.countDown();
             });
         }
         countDownLatch.await();
         executorService.shutdown();
-        log.info("count:{}", count.get());
+        System.out.println("count: "+ count.get());
     }
 
     private static void add() {
