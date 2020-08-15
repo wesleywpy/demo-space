@@ -2,6 +2,7 @@ package com.wesley.study.distributed;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -40,8 +41,7 @@ public class RedisLock {
             //如果锁已经被持有了，那需要等待锁的释放
             if(Objects.isNull(value) || count <= 0){
                 //获取锁
-                if(1 == jedis.setnx(key, identifier)){
-                    jedis.expire(key, expireTime);
+                if("1".equals(jedis.setex(key, expireTime, identifier))){
                     count = 1;
                     return true;
                 }

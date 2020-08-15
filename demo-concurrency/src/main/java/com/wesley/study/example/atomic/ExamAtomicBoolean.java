@@ -1,7 +1,8 @@
 package com.wesley.study.example.atomic;
 
-import com.wesley.study.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.annotation.concurrent.ThreadSafe;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -37,7 +38,7 @@ public class ExamAtomicBoolean {
                     semaphore.release();
                     countDownLatch.countDown();
                 } catch (InterruptedException e) {
-                    log.error("执行出错", e);
+                    e.printStackTrace();
                 }
             });
         }
@@ -48,7 +49,7 @@ public class ExamAtomicBoolean {
 
     private static void test(){
         if (atomicBoolean.compareAndSet(false, true)) {
-            log.info("execute success");
+            System.out.println("execute success");
         }
     }
 }

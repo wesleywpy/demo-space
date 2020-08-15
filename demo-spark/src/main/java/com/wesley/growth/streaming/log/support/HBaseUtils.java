@@ -16,9 +16,6 @@ public class HBaseUtils {
     HBaseAdmin admin = null;
     Configuration configuration = null;
 
-    /**
-     * 私有改造方法
-     */
     private HBaseUtils(){
         configuration = new Configuration();
         configuration.set("hbase.zookeeper.quorum", "hadoop01:2181,hadoop02:2181,hadoop03:2181");

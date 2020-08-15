@@ -68,13 +68,13 @@ public class SqlKafkaWordCount {
             SparkSession sparkSession = SparkSessionSingleton.getInstance(rdd.context().getConf());
 
             // 创建DataFrame
-            JavaRDD<Word> wordsRdd = rdd.map((Function<String, Word>) Word::new);
-            Dataset<Row> wordsDFrame = sparkSession.createDataFrame(wordsRdd, Word.class);
-            wordsDFrame.createOrReplaceTempView("words");
-
-            Dataset<Row> wordCountsDataFrame = sparkSession.sql("select word, count(*) as total from words group by word");
-            System.out.println("========= " + time + "=========");
-            wordCountsDataFrame.show();
+//            JavaRDD<Word> wordsRdd = rdd.map(Word::new);
+//            Dataset<Row> wordsDFrame = sparkSession.createDataFrame(wordsRdd, Word.class);
+//            wordsDFrame.createOrReplaceTempView("words");
+//
+//            Dataset<Row> wordCountsDataFrame = sparkSession.sql("select word, count(*) as total from words group by word");
+//            System.out.println("========= " + time + "=========");
+//            wordCountsDataFrame.show();
         });
 
         ssc.start();

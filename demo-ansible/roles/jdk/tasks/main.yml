@@ -27,6 +27,7 @@
     - jdk
 
 - name: source etc profile
+  become_user: root
   command: 'source /etc/profile'
   tags:
     - jdk

@@ -1,0 +1,11 @@
+logging:
+  level:
+    org.springframework.boot: debug
+
+
+spring:
+  datasource:
+    username: uoko
+    password: MdmgKSFdUZwK
+    url: jdbc:mysql://192.168.200.60:3336/uap_super_admin?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
+    driver-class-name: com.mysql.jdbc.Driver

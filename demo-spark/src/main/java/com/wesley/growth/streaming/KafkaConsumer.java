@@ -37,8 +37,7 @@ public class KafkaConsumer {
         SparkConf sparkConf = new SparkConf()
                 .setAppName("KafkaConsumer")
                 // 本地调试模式
-//                .setMaster("local[2]")
-        ;
+                .setMaster("local[2]");
 
         JavaStreamingContext ssc = new JavaStreamingContext(sparkConf, Durations.seconds(5));
         Map<String, Object> kafkaParams = new HashMap<>();
@@ -53,7 +52,11 @@ public class KafkaConsumer {
         JavaInputDStream<ConsumerRecord<String, String>> stream = KafkaUtils.createDirectStream(
                 ssc, LocationStrategies.PreferConsistent(), ConsumerStrategies.<String, String>Subscribe(topics, kafkaParams));
 
-        stream.mapToPair(record -> new Tuple2<>(record.key(), record.value())).print();
+        stream.mapToPair(record -> {
+            System.out.println(record.key() + " -> " + record.value());
+            return new Tuple2<>(record.key(), record.value());
+        })
+              .print();
 
         ssc.start();
         ssc.awaitTermination();
