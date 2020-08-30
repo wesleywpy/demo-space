@@ -1,0 +1,25 @@
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #实体,枚举类扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.innovation.scene.domain
+
+spring:
+  jackson:
+    serialization:
+      indent-output: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/wesley?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root123
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+server:
+  port: 8082
