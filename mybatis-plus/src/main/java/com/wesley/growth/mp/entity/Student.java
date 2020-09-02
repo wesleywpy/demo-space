@@ -58,7 +58,6 @@ public class Student implements Serializable {
 		sb.append("id=").append(id);
 		sb.append(", name='").append(name).append('\'');
 		sb.append(", age=").append(age);
-		sb.append(", className='").append(className).append('\'');
 		sb.append('}');
 		return sb.toString();
 	}

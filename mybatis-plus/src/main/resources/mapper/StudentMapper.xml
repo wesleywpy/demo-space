@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wesley.growth.mp.mapper.StudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.wesley.growth.mp.entity.Student">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+    </resultMap>
+
+    <select id="findByPage" resultType="com.wesley.growth.mp.entity.Student">
+        select * from student t
+
+        <where>
+            <if test="search.name != null">
+                and t.name = #{search.name}
+            </if>
+        </where>
+    </select>
+
+</mapper>

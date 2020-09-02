@@ -23,3 +23,8 @@ spring:
         useServerPrepStmts: true
 server:
   port: 8082
+
+logging:
+  level:
+    ROOT: DEBUG
+    com.wesley.growth.mp: DEBUG
