@@ -2,6 +2,12 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
   #实体,枚举类扫描，多个package用逗号或者分号分隔
   type-aliases-package: com.innovation.scene.domain
+  global-config:
+    db-config:
+      # 逻辑删除字段值 未删除, 默认值0
+      logic-not-delete-value: 0
+      # 逻辑删除字段值 已删除, 默认值1
+      logic-delete-value: 1
 
 spring:
   jackson:
@@ -26,5 +32,4 @@ server:
 
 logging:
   level:
-    ROOT: DEBUG
     com.wesley.growth.mp: DEBUG

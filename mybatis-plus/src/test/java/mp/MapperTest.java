@@ -24,7 +24,7 @@ import java.util.List;
  */
 @SpringBootTest(classes = App.class)
 @RunWith(SpringRunner.class)
-public class PlusTest {
+public class MapperTest {
 
     @Autowired
     StudentMapper studentMapper;
@@ -71,6 +71,11 @@ public class PlusTest {
         long total = list.getTotal();
         System.out.println(" ------> total: "+ total);
         list.getRecords().forEach(System.out::println);
+    }
+
+    @Test
+    public void delete() {
+        studentMapper.deleteById(1);
     }
 
 }

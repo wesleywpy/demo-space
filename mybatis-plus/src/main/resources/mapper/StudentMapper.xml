@@ -6,6 +6,8 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="age" property="age"/>
+        <result column="age" property="isDeleted"/>
+
     </resultMap>
 
     <select id="findByPage" resultType="com.wesley.growth.mp.entity.Student">

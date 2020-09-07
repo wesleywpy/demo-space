@@ -1,6 +1,7 @@
 package com.wesley.growth.mp.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 
@@ -19,6 +20,12 @@ public class Student implements Serializable {
 	// 班级
 	@TableField(exist = false)
 	private String className;
+
+	/**
+	 * 状态[0:未删除,1:删除]：逻辑删除
+	 */
+	@TableLogic
+	private Integer isDeleted;
 
 	public String getClassName() {
 		return className;
@@ -50,6 +57,14 @@ public class Student implements Serializable {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	@Override
