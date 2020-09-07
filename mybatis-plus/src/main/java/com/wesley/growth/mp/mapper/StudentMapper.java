@@ -9,4 +9,11 @@ import org.apache.ibatis.annotations.Param;
 public interface StudentMapper extends BaseMapper<Student> {
 
     IPage<Student> findByPage(IPage<Student> page, @Param("search") SearchDTO dto);
+
+    /**
+     * 自定义SQL方法
+     * @return
+     */
+    int deleteAll();
+
 }

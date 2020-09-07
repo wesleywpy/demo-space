@@ -1,14 +1,19 @@
 package com.wesley.growth.mp.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.Version;
 import java.io.Serializable;
 
 @TableName("student")
 public class Student implements Serializable {
 
 	// 学号
+	@TableId(type = IdType.INPUT)
 	private Integer id;
 
 	// 姓名
@@ -22,10 +27,48 @@ public class Student implements Serializable {
 	private String className;
 
 	/**
+	 * 乐观锁
+	 */
+	@Version
+	private Integer version;
+	/**
+	 * 自动填充字段
+	 */
+	@TableField(fill = FieldFill.INSERT)
+	private Integer createBy;
+	@TableField(fill = FieldFill.UPDATE)
+	private Integer updateBy;
+
+	/**
 	 * 状态[0:未删除,1:删除]：逻辑删除
 	 */
 	@TableLogic
+	@TableField(select = false)
 	private Integer isDeleted;
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public Integer getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(Integer createBy) {
+		this.createBy = createBy;
+	}
+
+	public Integer getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(Integer updateBy) {
+		this.updateBy = updateBy;
+	}
 
 	public String getClassName() {
 		return className;

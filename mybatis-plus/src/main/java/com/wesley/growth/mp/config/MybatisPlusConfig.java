@@ -1,5 +1,7 @@
 package com.wesley.growth.mp.config;
 
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +27,31 @@ public class MybatisPlusConfig {
         // 开启 count 的 join 优化,只针对部分 left join
         paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
         return paginationInterceptor;
+    }
+
+    /**
+     * 自动填充配置
+     */
+    @Bean
+    public MetaObjectHandler metaObjectHandler() {
+        return new MybatisMetaObjectHandler();
+    }
+
+    /**
+     * 自定义SQL注入器
+     * @return
+     */
+    @Bean
+    public MySqlInjector customerSqlInjector() {
+        return new MySqlInjector();
+    }
+
+    /**
+     * 乐观锁 插件
+     */
+    @Bean
+    public OptimisticLockerInterceptor optimisticLoker() {
+        return new OptimisticLockerInterceptor();
     }
 
 }
