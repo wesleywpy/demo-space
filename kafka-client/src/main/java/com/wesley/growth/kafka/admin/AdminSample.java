@@ -1,11 +1,9 @@
 package com.wesley.growth.kafka.admin;
 
 import org.apache.kafka.clients.admin.*;
+import org.apache.kafka.common.config.ConfigResource;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 /**
  * AdminSample
@@ -15,12 +13,12 @@ import java.util.Set;
  */
 public class AdminSample {
 
-    public static final String TOPIC_NAME = "wesley_topic";
+    public static final String TOPIC_NAME = "test";
 
 
     public static AdminClient adminClient() {
         Properties properties = new Properties();
-        properties.setProperty(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.17.88:9092");
+        properties.setProperty(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.17.99:9092");
         return AdminClient.create(properties);
     }
 
@@ -56,9 +54,99 @@ public class AdminSample {
         topicListings.forEach(System.out::println);
     }
 
+    /**
+     * 删除 Topic
+     * @throws Exception
+     */
+    public static void delTopics() throws Exception {
+        AdminClient adminClient = adminClient();
+        DeleteTopicsResult deleteTopicsResult = adminClient.deleteTopics(Arrays.asList(TOPIC_NAME));
+        deleteTopicsResult.all().get();
+    }
+
+    /**
+        描述Topic
+        name ：jiangzh-topic ,
+        desc: (name=jiangzh-topic,
+            internal=false,
+            partitions=
+                (partition=0,
+                 leader=192.168.220.128:9092
+                 (id: 0 rack: null),
+                 replicas=192.168.220.128:9092
+                 (id: 0 rack: null),
+                 isr=192.168.220.128:9092
+                 (id: 0 rack: null)),
+                 authorizedOperations=[])
+     */
+    public static void describeTopics() throws Exception {
+        AdminClient adminClient = adminClient();
+        DescribeTopicsResult describeTopicsResult = adminClient.describeTopics(Arrays.asList(TOPIC_NAME));
+        Map<String, TopicDescription> stringTopicDescriptionMap = describeTopicsResult.all().get();
+        Set<Map.Entry<String, TopicDescription>> entries = stringTopicDescriptionMap.entrySet();
+        entries.forEach((entry)->{
+            System.out.println("name ："+entry.getKey()+" , desc: "+ entry.getValue());
+        });
+    }
+
+    public static void describeConfig() throws Exception{
+        AdminClient adminClient = adminClient();
+//        ConfigResource configResource = new ConfigResource(ConfigResource.Type.BROKER, TOPIC_NAME);
+
+        ConfigResource configResource = new ConfigResource(ConfigResource.Type.TOPIC, TOPIC_NAME);
+        DescribeConfigsResult describeConfigsResult = adminClient.describeConfigs(Arrays.asList(configResource));
+        Map<ConfigResource, Config> configResourceConfigMap = describeConfigsResult.all().get();
+        configResourceConfigMap.entrySet().forEach((entry)->{
+            System.out.println("configResource : "+entry.getKey()+" , Config : "+entry.getValue());
+        });
+    }
+    /*
+           修改Config信息
+        */
+    public static void alterConfig() throws Exception{
+        AdminClient adminClient = adminClient();
+//        Map<ConfigResource,Config> configMaps = new HashMap<>();
+//
+//        // 组织两个参数
+//        ConfigResource configResource = new ConfigResource(ConfigResource.Type.TOPIC, TOPIC_NAME);
+//        Config config = new Config(Arrays.asList(new ConfigEntry("preallocate","true")));
+//        configMaps.put(configResource,config);
+//        AlterConfigsResult alterConfigsResult = adminClient.alterConfigs(configMaps);
+
+        /*
+            从 2.3以上的版本新修改的API
+         */
+        Map<ConfigResource,Collection<AlterConfigOp>> configMaps = new HashMap<>();
+        // 组织两个参数
+        ConfigResource configResource = new ConfigResource(ConfigResource.Type.TOPIC, TOPIC_NAME);
+        AlterConfigOp alterConfigOp =
+                new AlterConfigOp(new ConfigEntry("preallocate","false"),AlterConfigOp.OpType.SET);
+        configMaps.put(configResource,Arrays.asList(alterConfigOp));
+
+        AlterConfigsResult alterConfigsResult = adminClient.incrementalAlterConfigs(configMaps);
+        alterConfigsResult.all().get();
+    }
+
+    /**
+    * 增加partition数量
+    */
+    public static void incrPartitions(int partitions) throws Exception{
+        AdminClient adminClient = adminClient();
+        Map<String, NewPartitions> partitionsMap = new HashMap<>();
+        NewPartitions newPartitions = NewPartitions.increaseTo(partitions);
+        partitionsMap.put(TOPIC_NAME, newPartitions);
+        CreatePartitionsResult createPartitionsResult = adminClient.createPartitions(partitionsMap);
+        createPartitionsResult.all().get();
+    }
+
     public static void main(String[] args) throws Exception {
 //        createTopic();
-        topicLists();
+//        topicLists();
+//        describeTopics();
+//        describeConfig();
+
+        // 增加partition数量
+        incrPartitions(2);
     }
 
 }
